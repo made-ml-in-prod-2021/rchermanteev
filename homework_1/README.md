@@ -1,18 +1,18 @@
-##Домашнее задание 1.
+# Домашнее задание 1.
 
-####Установка пакетов:
+### Установка пакетов:
 
     pip install -r requirements.txt
 
-####Обучение модели:
+### Обучение модели:
 
     python ml_project/train_pipeline.py configs/run_config_random_forest.yml train
 
-####Получение предсказаний модели: 
+### Получение предсказаний модели: 
 
     python ml_project/train_pipeline.py configs/run_config_random_forest.yml test
 
-####Чек лист:
+### Чек лист:
       
     -2) создал ветку homework1 (1)
     
