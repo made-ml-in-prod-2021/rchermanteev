@@ -7,6 +7,10 @@
 ### Запуск контейнера:
 
     docker run -p 5000:5000 rchermanteev/2020_made_ml_in_production
+    
+### Сборка контейнера(если не пользоваться docker hub):
+
+    docker build -t rchermanteev/2020_made_ml_in_production .
 
 ### Установка зависимостей: 
 
