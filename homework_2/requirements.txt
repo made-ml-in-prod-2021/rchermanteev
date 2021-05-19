@@ -3,7 +3,6 @@ pyyaml==3.11
 pandas==1.1.5
 matplotlib==3.4.2
 seaborn==0.11.1
-torch==1.8.1
 click==7.1.2
 marshmallow-dataclass==8.4.1
 joblib==1.0.1
