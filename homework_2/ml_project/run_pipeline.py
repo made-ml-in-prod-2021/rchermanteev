@@ -115,17 +115,3 @@ def run_train_pipeline(training_pipeline_params):
         transformer, training_pipeline_params.transformer_params_path
     )
     logger.info("Saved transformer_params in file - (%s)", path_to_transformer_params)
-
-
-# def pipeline_command(config_path: str, train_or_predict: str):
-#     params = read_run_params(config_path)
-#     setup_logging(params.logging_config_path)
-#     logger.info("Start app in mode - (%s)", train_or_predict)
-#     logger.info("Read run params from - (%s)", config_path)
-#     logger.info("Read logging params from - (%s)", params.logging_config_path)
-#     if train_or_predict == "train":
-#         run_train_pipeline(params)
-#     elif train_or_predict == "test":
-#         run_test_pipeline(params)
-#
-#     logger.info("End app")

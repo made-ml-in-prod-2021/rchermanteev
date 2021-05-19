@@ -30,7 +30,6 @@ def root():
 
 @app.post("/predict")
 def read_item(features: FeaturesToPredict):
-    # TODO: Добавить выбор другой модели
     params = read_run_params("configs/run_config_random_forest.yml")
     if not (
         os.path.exists(params.output_model_path)
