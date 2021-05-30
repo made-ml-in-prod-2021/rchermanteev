@@ -20,7 +20,7 @@ if __name__ == "__main__":
         }
         print(request_data)
         response = requests.post(
-            "http://0.0.0.0:5000/predict",
+            "http://127.0.0.1:8000/predict",
             json=request_data,
         )
         print(response.status_code)
