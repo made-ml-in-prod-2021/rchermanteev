@@ -10,7 +10,10 @@ from cloudpickle import load
 
 from data import read_data, split_train_val_data
 from enities.train_pipeline_params import (
-    read_run_params,
+    read_train_params,
+)
+from enities.predict_pipeline_params import (
+    read_test_params,
 )
 from features import make_features
 from features.build_features import extract_target, build_transformer
@@ -100,7 +103,7 @@ def run_train_pipeline(training_pipeline_params):
     logger.info("Get predicts")
     predicts = predict_model(model, val_features)
     logger.info("Predicts shape - (%s)", predicts.shape)
-    metrics = evaluate_model(predicts, val_target)
+    metrics = evaluate_model(predicts, val_target, training_pipeline_params.train_params.metrics_list)
     logger.info("Evaluated model result - (%s)", metrics)
     with open(training_pipeline_params.metric_path, "w") as metric_file:
         json.dump(metrics, metric_file)
@@ -121,14 +124,18 @@ def run_train_pipeline(training_pipeline_params):
 @click.argument("config_path")
 @click.argument("train_or_predict")
 def pipeline_command(config_path: str, train_or_predict: str):
-    params = read_run_params(config_path)
+    if train_or_predict == "train":
+        params = read_train_params(config_path)
+    elif train_or_predict == "predict":
+        params = read_test_params(config_path)
+
     setup_logging(params.logging_config_path)
     logger.info("Start app in mode - (%s)", train_or_predict)
     logger.info("Read run params from - (%s)", config_path)
     logger.info("Read logging params from - (%s)", params.logging_config_path)
     if train_or_predict == "train":
         run_train_pipeline(params)
-    elif train_or_predict == "test":
+    elif train_or_predict == "predict":
         run_test_pipeline(params)
 
     logger.info("End app")

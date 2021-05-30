@@ -6,11 +6,11 @@
 
 ### Обучение модели:
 
-    python ml_project/train_pipeline.py configs/run_config_random_forest.yml train
+    python ml_project/run_pipeline.py configs/train_config_random_forest.yml train
 
 ### Получение предсказаний модели: 
 
-    python ml_project/train_pipeline.py configs/run_config_random_forest.yml test
+    python ml_project/run_pipeline.py configs/predict_config_random_forest.yml predict
 
 ### Чек лист:
       

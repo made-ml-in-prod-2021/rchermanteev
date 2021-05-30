@@ -13,19 +13,29 @@ from sklearn.metrics import accuracy_score, confusion_matrix, f1_score, roc_auc_
 SklearnRegressionModel = Union[RandomForestClassifier, LogisticRegression]
 
 
-def evaluate_model(predicts: np.ndarray, target: pd.Series) -> Dict[str, float]:
+def evaluate_model(predicts: np.ndarray, target: pd.Series, metrics_list) -> Dict[str, float]:
 
     cm = confusion_matrix(target, predicts)
     sensitivity = cm[0, 0] / (cm[0, 0] + cm[1, 0])
     specificity = cm[1, 1] / (cm[1, 1] + cm[0, 1])
 
-    return {
-        "accuracy_score": accuracy_score(target, predicts),
-        "cm_sensitivity": sensitivity,
-        "cm_specificity": specificity,
-        "f1_score": f1_score(target, predicts),
-        "roc_auc_score": roc_auc_score(target, predicts),
-    }
+    metrics = {}
+    if "accuracy_score" in metrics_list:
+        metrics["accuracy_score"] = accuracy_score(target, predicts)
+
+    if "cm_sensitivity" in metrics_list:
+        metrics["cm_sensitivity"] = sensitivity
+
+    if "cm_specificity" in metrics_list:
+        metrics["cm_specificity"] = specificity
+
+    if "f1_score" in metrics_list:
+        metrics["f1_score"] = f1_score(target, predicts)
+
+    if "roc_auc_score" in metrics_list:
+        metrics["roc_auc_score"] = roc_auc_score(target, predicts)
+
+    return metrics
 
 
 def serialize_model(model: object, output: str) -> str:
