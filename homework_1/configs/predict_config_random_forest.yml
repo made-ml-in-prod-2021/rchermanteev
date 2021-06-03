@@ -1,0 +1,5 @@
+test_data_path: "data/raw/test.csv"
+output_model_path: "models/model_random_forest.pkl"
+predicts_path: "models/predicts_random_forest.csv"
+transformer_params_path: "models/transformer_params.pkl"
+logging_config_path: "configs/logging.conf.yml"
