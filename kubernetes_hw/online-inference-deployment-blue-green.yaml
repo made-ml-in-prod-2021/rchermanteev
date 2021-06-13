@@ -9,7 +9,7 @@ spec:
   strategy:
     type: RollingUpdate
     rollingUpdate:
-      maxSurge: 4
+      maxSurge: 100%
       maxUnavailable: 0
   selector:
     matchLabels:
@@ -21,7 +21,7 @@ spec:
         app: fastapi-ml
     spec:
       containers:
-        - image: rchermanteev/2020_made_ml_in_production:v1
+        - image: rchermanteev/2020_made_ml_in_production:v2
           name: fastapi-ml
           ports:
             - containerPort: 5000
