@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fastapi-ml-rolling-update
+  labels:
+    app: fastapi-ml-rolling-update
+spec:
+  replicas: 4
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+  selector:
+    matchLabels:
+      app: fastapi-ml
+  template:
+    metadata:
+      name: fastapi-ml
+      labels:
+        app: fastapi-ml
+    spec:
+      containers:
+        - image: rchermanteev/2020_made_ml_in_production:v1
+          name: fastapi-ml
+          ports:
+            - containerPort: 5000
