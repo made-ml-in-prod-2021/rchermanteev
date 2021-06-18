@@ -1,0 +1,37 @@
+train_data_path: "data/raw/train.csv"
+test_data_path: "data/raw/test.csv"
+output_model_path: "models/model_random_forest.pkl"
+metric_path: "models/metrics_random_forest.json"
+predicts_path: "models/predicts_random_forest.csv"
+transformer_params_path: "models/transformer_params.pkl"
+logging_config_path: "configs/logging.conf.yml"
+splitting_params:
+  val_size: 0.1
+  random_state: 2021
+train_params:
+  model_type: "RandomForestClassifier"
+  n_estimators: 1000
+  random_state: 2021
+  metrics_list:
+    - "accuracy_score"
+    - "cm_sensitivity"
+    - "cm_specificity"
+    - "f1_score"
+    - "roc_auc_score"
+feature_params:
+  categorical_features:
+    - "sex"
+    - "cp"
+    - "fbs"
+    - "restecg"
+    - "exang"
+    - "slope"
+    - "ca"
+    - "thal"
+  numerical_features:
+    - "age"
+    - "trestbps"
+    - "chol"
+    - "thalach"
+    - "oldpeak"
+  target_col: "target"
