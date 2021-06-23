@@ -1,0 +1,27 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: fastapi-ml-probes
+  labels:
+    app: fastapi-ml-probes
+spec:
+  containers:
+  - name: liveness
+    image: k8s.gcr.io/liveness
+    args:
+    - /server
+    livenessProbe:
+      httpGet:
+        path: /healthz
+        port: 8080
+        httpHeaders:
+        - name: Custom-Header
+          value: Awesome
+      initialDelaySeconds: 3
+      periodSeconds: 3
+    readinessProbe:
+      httpGet:
+        path: /healthz
+        port: 8080
+      initialDelaySeconds: 3
+      periodSeconds: 3

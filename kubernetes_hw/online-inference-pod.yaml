@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: fastapi-ml-base
+  labels:
+    app: fastapi-ml-base
+spec:
+  containers:
+    - image: rchermanteev/2020_made_ml_in_production
+      name: fastapi-ml
+      ports:
+        - containerPort: 5000
